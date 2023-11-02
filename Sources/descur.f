@@ -97,10 +97,10 @@ C-----------------------------------------------
 c**********************************************************************
 c       CONTROL DATA THAT CAN BE SPECIFIED BY USER
 c**********************************************************************
-      data niter/1500/
+      data niter/15000/
       data nstep/100/
 
-      data ftol/1.E-5_dp/
+      data ftol/1.E-15_dp/
 
       data datafile/'none'/
 
@@ -138,7 +138,7 @@ c**********************************************************************
 
       HB_Parameter = 1
 
-      WRITE (6, '(a,/,a)', advance='no') 
+      WRITE (6, '(a,/,a)', advance='no')
      1    ' Use (default) VMEC-compatible compression (V)',
      2    ' or Advanced Hirshman-Breslau compression (A): '
       READ (*,'(a)') ch_yn
@@ -224,7 +224,7 @@ c**********************************************************************
          CASE (5)
             rbdy = rsqr
             zbdy = zsqr
-         
+
          END SELECT
          rin(:ntheta) = rbdy(1)
          zin(:ntheta) = zbdy(1)
@@ -246,7 +246,7 @@ c**********************************************************************
                zin(j)=zin(j) + zd3ds(m)*SIN(m*arg) + zd3dc(m)*COS(m*arg)
             END DO
          END DO
-  
+
       ELSE IF (itype .EQ. 7) THEN
          rin(:ntheta) = zero;  zin(:ntheta) = zero
 
@@ -303,7 +303,7 @@ c**********************************************************************
 
       CLOSE(20)
 
-      IF (nphi .eq. 1 
+      IF (nphi .eq. 1
      1   .and. (ALL(zin .ge. 0.) .or. ALL(zin .le. 0.))) THEN
          ncount = ntheta
          DO i = ntheta,1,-1
@@ -373,7 +373,7 @@ c**********************************************************************
       END DO
 
       IF (HB_Parameter == 0) THEN        !!extra resolution, NOT VMEC compatible
-         mpol = mpol+2             
+         mpol = mpol+2
       ELSE
          mpol = mpol+1
       END IF
@@ -416,14 +416,14 @@ c**********************************************************************
             QPSI = QPSI + one/r1**3
             VP   = VP   + one/r1
          END DO
-         
+
          QPSI = QPSI/ntheta
          VP   = (VP/ntheta) * (KAPPA*EPS**2)/2
          WRITE (6, '(a,1p,3e12.3)')' PSI,Q/Q0, VP: ', A1, QPSI, VP
          WRITE (33,'(a,1p,3e12.3)')' PSI,Q/Q0, VP: ', A1, QPSI, VP
       END DO
-          
-       
+
+
 
 !      rmin = SQRT(one - delta_r**2)
 !      rmax = SQRT(one + delta_r**2)

@@ -97,10 +97,10 @@ C-----------------------------------------------
 c**********************************************************************
 c       CONTROL DATA THAT CAN BE SPECIFIED BY USER
 c**********************************************************************
-      data niter/15000/
-      data nstep/100/
+      data niter/150000/
+      data nstep/1000/
 
-      data ftol/1.E-15_dp/
+      data ftol/1.E-25_dp/
 
       data datafile/'none'/
 
